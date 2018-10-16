@@ -3,16 +3,34 @@
  * @module trize
  */
 
-// ----Class Imports----
+// ---- Classes ----
+import Label    from './render/label';
+import Renderer from './render/renderer';
+import Triangle from './geometry/triangle';
+import Vector2  from './math/vector2';
 
-
-// ----Function Imports----
-
+// ---- Functions ----
+import clipSpaceToPixels from './render/clipSpaceToPixels';
+import degToRad          from './math/degToRad';
+import distance          from './math/distance';
+import lawOfCosines      from './math/lawOfCosines';
+import radToDeg          from './math/radToDeg';
+import round             from './math/round';
 
 const trize = {
-  // Classes----------
+  // ---- Classes ----
+  Label,
+  Renderer,
+  Triangle,
+  Vector2,
 
-  // Functions--------
+  // ---- Functions ----
+  clipSpaceToPixels,
+  degToRad,
+  distance,
+  lawOfCosines,
+  radToDeg,
+  round,
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){

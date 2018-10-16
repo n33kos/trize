@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Scene Example</title>
+
+    <meta name="description" content="Examples for trize">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../../dist/trize.min.js"></script>
+  </head>
+
+  <body>
+    <canvas id="view"></canvas>
+    <h1>Triangle Example</h1>
+  </body>
+
+  <script>
+    const renderer = new trize.Renderer('view');
+    const triangle = new trize.Triangle(
+      [
+        { x: 0,     y: -0.75, color: 'red', width: 5,},
+        { x: -0.75, y: 0.25,  color: 'green', width: 5,},
+        { x: 0.75,  y: 0.25,  color: 'blue', width: 5,},
+      ],
+      renderer.canvas,
+    );
+
+    function drawThings() {
+      triangle.drawArc(renderer.ctx, 0, 'orange');
+      triangle.drawArc(renderer.ctx, 1, 'purple');
+      triangle.drawArc(renderer.ctx, 2, 'cyan');
+      triangle.draw(renderer.ctx);
+    }
+    drawThings();
+
+
+    window.addEventListener('resize', () => {
+      renderer.clear();
+      renderer.resizeCanvas();
+
+      drawThings();
+    });
+  </script>
+</html>

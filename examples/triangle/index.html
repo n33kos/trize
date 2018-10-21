@@ -19,29 +19,29 @@
   </body>
 
   <script>
-    const renderer = new trize.Renderer('view');
-    const triangle = new trize.Triangle(
+    // --------INIT-----
+     var isDragging = false;
+     var renderer = new trize.Renderer('view');
+     var triangle = new trize.Triangle(
       [
-        { x: 0,     y: -0.75, color: 'red', width: 5,},
-        { x: -0.75, y: 0.25,  color: 'green', width: 5,},
-        { x: 0.75,  y: 0.25,  color: 'blue', width: 5,},
+        new trize.Point({ position: new trize.Vector2(0,    0.5), color: 'red', width: 1, drawArc: true, }),
+        new trize.Point({ position: new trize.Vector2(-1, -0.5), color: 'green', width: 1, drawArc: true, }),
+        new trize.Point({ position: new trize.Vector2(0.75,  0.25), color: 'blue', width: 1, drawArc: true, }),
       ],
       renderer.canvas,
     );
 
+    // -----FUNCS----
     function drawThings() {
-      triangle.drawArc(renderer.ctx, 0, 'orange');
-      triangle.drawArc(renderer.ctx, 1, 'purple');
-      triangle.drawArc(renderer.ctx, 2, 'cyan');
       triangle.draw(renderer.ctx);
     }
     drawThings();
 
 
+    // -----EVENTS------
     window.addEventListener('resize', () => {
       renderer.clear();
       renderer.resizeCanvas();
-
       drawThings();
     });
   </script>

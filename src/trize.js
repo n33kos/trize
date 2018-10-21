@@ -5,6 +5,7 @@
 
 // ---- Classes ----
 import Label    from './render/label';
+import Point    from './geometry/point';
 import Renderer from './render/renderer';
 import Triangle from './geometry/triangle';
 import Vector2  from './math/vector2';
@@ -20,6 +21,7 @@ import round             from './math/round';
 const trize = {
   // ---- Classes ----
   Label,
+  Point,
   Renderer,
   Triangle,
   Vector2,

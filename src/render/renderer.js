@@ -8,6 +8,7 @@ export default class {
     this.ctx = ctx;
     this.cx = ctx.canvas.width/2;
     this.cy = ctx.canvas.height/2;
+    this.scene = [];
   }
 
   resizeCanvas() {
@@ -19,5 +20,15 @@ export default class {
 
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  add(object) {
+    this.scene.push(object);
+  }
+
+  render() {
+    this.scene.forEach(object => {
+      object.draw(this.canvas, this.ctx);
+    })
   }
 }

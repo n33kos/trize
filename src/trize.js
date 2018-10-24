@@ -4,7 +4,7 @@
  */
 
 // ---- Classes ----
-import Label    from './render/label';
+import Label    from './interface/label';
 import Point    from './geometry/point';
 import Renderer from './render/renderer';
 import Triangle from './geometry/triangle';
@@ -15,6 +15,7 @@ import clipSpaceToPixels from './render/clipSpaceToPixels';
 import degToRad          from './math/degToRad';
 import distance          from './math/distance';
 import lawOfCosines      from './math/lawOfCosines';
+import pixelsToClipSpace from './render/pixelsToClipSpace';
 import radToDeg          from './math/radToDeg';
 import round             from './math/round';
 
@@ -31,6 +32,7 @@ const trize = {
   degToRad,
   distance,
   lawOfCosines,
+  pixelsToClipSpace,
   radToDeg,
   round,
 }

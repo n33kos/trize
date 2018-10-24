@@ -7,8 +7,7 @@ import radToDeg          from '../math/radToDeg';
 import Vector2           from '../math/vector2';
 
 export default class {
-  constructor(geometry = null, canvas) {
-    this.canvas = canvas;
+  constructor(geometry = null) {
     this.geometry = geometry;
     if (!geometry) {
       // Fallback geometry
@@ -27,10 +26,9 @@ export default class {
         }),
       ];
     }
-    const sides = this.getSideLengths(canvas, geometry);
-    this.sides = sides;
-    this.angles = this.getAngles(sides);
-    this.arcBoundaries = this.getArcBoundaries();
+    this.sides = null;
+    this.angles = null;
+    this.arcBoundaries = null;
   }
 
   getSideCenterPoint(a, b) {
@@ -65,7 +63,7 @@ export default class {
     ];
   }
 
-  getArcBoundaries() {
+  getArcBoundaries(canvas) {
     let arcs = [];
     this.geometry.forEach((point, i) => {
       // Get the next point
@@ -77,9 +75,9 @@ export default class {
       if (i > 0) prevPoint = this.geometry[i - 1];
 
       // Convert clipspace to pixel space
-      const pointPixelSpace = clipSpaceToPixels(this.canvas, point.position);
-      const nextPointPixelSpace = clipSpaceToPixels(this.canvas, nextPoint.position);
-      const prevPointPixelSpace = clipSpaceToPixels(this.canvas, prevPoint.position);
+      const pointPixelSpace = clipSpaceToPixels(canvas, point.position);
+      const nextPointPixelSpace = clipSpaceToPixels(canvas, nextPoint.position);
+      const prevPointPixelSpace = clipSpaceToPixels(canvas, prevPoint.position);
 
       // get diffs from the other points to the current point
       const prevDiffX = prevPointPixelSpace.x - pointPixelSpace.x;
@@ -107,8 +105,8 @@ export default class {
     return arcs;
   }
 
-  drawArc(ctx, point, angle, offset) {
-    const screenPos = clipSpaceToPixels(this.canvas, point.position);
+  drawArc(canvas, ctx, point, angle, offset) {
+    const screenPos = clipSpaceToPixels(canvas, point.position);
 
     ctx.beginPath();
     ctx.lineWidth = point.width;
@@ -123,9 +121,9 @@ export default class {
     ctx.stroke();
   }
 
-  drawLine(ctx, point, nextPoint) {
-    const screenPos = clipSpaceToPixels(this.canvas, point.position);
-    const nextScreenPos = clipSpaceToPixels(this.canvas, nextPoint.position);
+  drawLine(canvas, ctx, point, nextPoint) {
+    const screenPos = clipSpaceToPixels(canvas, point.position);
+    const nextScreenPos = clipSpaceToPixels(canvas, nextPoint.position);
 
     ctx.lineCap = 'round';
     ctx.strokeStyle = point.color;
@@ -136,10 +134,10 @@ export default class {
     ctx.stroke();
   }
 
-  draw(ctx) {
-    this.sides = this.getSideLengths(this.canvas, this.geometry);
+  draw(canvas, ctx) {
+    this.sides = this.getSideLengths(canvas, this.geometry);
     this.angles = this.getAngles(this.sides);
-    this.arcBoundaries = this.getArcBoundaries();
+    this.arcBoundaries = this.getArcBoundaries(canvas);
 
     for (let i = 0; i < this.geometry.length; i++) {
       const point = this.geometry[i];
@@ -149,8 +147,8 @@ export default class {
         nextPoint = this.geometry[i + 1];
       }
 
-      if (point.drawArc) this.drawArc(ctx, point, this.angles[i], this.arcBoundaries[i]);
-      this.drawLine(ctx, point, nextPoint);
+      if (point.drawArc) this.drawArc(canvas, ctx, point, this.angles[i], this.arcBoundaries[i]);
+      this.drawLine(canvas, ctx, point, nextPoint);
     }
   }
 

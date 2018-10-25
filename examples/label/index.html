@@ -22,26 +22,23 @@
     // --------INIT-----
      var isDragging = false;
      var renderer = new trize.Renderer('view');
-     var triangle = new trize.Triangle(
-      [
-        new trize.Point({ position: new trize.Vector2(0,    0.5), color: 'red', width: 1, drawArc: true, }),
-        new trize.Point({ position: new trize.Vector2(-1, -0.5), color: 'green', width: 1, drawArc: true, }),
-        new trize.Point({ position: new trize.Vector2(1,  0.25), color: 'blue', width: 1, drawArc: true, }),
-      ],
-    );
-    var label = new trize.Label({
-      fillStyle: 'blue',
-      font: '50px sans-serif',
-      position: new trize.Vector2(0, 0),
-      strokeStyle: 'orange',
-      text: 'This is a label!',
-      textAlign: 'center',
-      shouldStroke: true,
-      shouldFill: true,
-    });
 
-    renderer.add(triangle);
-    renderer.add(label);
+    for (var i = 0; i < 50; i++) {
+      var label = new trize.Label({
+        fillStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
+        font: (Math.random() * 50 + 5) + 'px sans-serif',
+        position: new trize.Vector2(
+          Math.random() > 0.5 ? -Math.random() : Math.random(),
+          Math.random() > 0.5 ? -Math.random() : Math.random(),
+        ),
+        strokeStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
+        text: 'This is a label!',
+        textAlign: 'center',
+        shouldStroke: true,
+        shouldFill: true,
+      });
+      renderer.add(label);
+    }
 
     // -----FUNCS----
     renderer.render();

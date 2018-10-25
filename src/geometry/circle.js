@@ -3,46 +3,54 @@ import clipSpaceToPixels from '../render/clipSpaceToPixels';
 
 export default class {
   constructor({
+    arcEnd = Math.PI * 2,
+    arcStart = 0,
     fillStyle = '#000000',
-    font = '16px sans-serif',
     position = new Vector2(0, 0),
-    strokeStyle = '#000000',
-    text = 'Hello World',
-    textAlign = 'center',
-    shouldStroke = false,
+    radius = 100,
     shouldFill = true,
+    shouldStroke = false,
+    strokeStyle = '#000000',
   }) {
+    this.arcEnd = arcEnd;
+    this.arcStart = arcStart;
     this.fillStyle = fillStyle;
-    this.font = font;
     this.position = position;
+    this.radius = radius;
     this.shouldFill = shouldFill;
     this.shouldStroke = shouldStroke;
     this.strokeStyle = strokeStyle;
-    this.text = text;
-    this.textAlign = textAlign;
   }
 
   draw(canvas, ctx) {
     const screenPos = clipSpaceToPixels(canvas, this.position);
-    ctx.font = this.font;
-    ctx.textAlign = this.textAlign;
 
     if (this.shouldFill) {
       ctx.fillStyle = this.fillStyle;
-      ctx.fillText(
-        this.text,
+
+      ctx.beginPath();
+      ctx.arc(
         screenPos.x,
         screenPos.y,
+        this.radius,
+        this.arcStart,
+        this.arcEnd,
       );
+      ctx.fill();
     }
 
     if (this.shouldStroke) {
       ctx.strokeStyle = this.strokeStyle;
-      ctx.strokeText(
-        this.text,
+
+      ctx.beginPath();
+      ctx.arc(
         screenPos.x,
         screenPos.y,
+        this.radius,
+        this.arcStart,
+        this.arcEnd,
       );
+      ctx.stroke();
     }
   }
 }

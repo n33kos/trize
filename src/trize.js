@@ -4,6 +4,7 @@
  */
 
 // ---- Classes ----
+import Circle   from './geometry/circle';
 import Label    from './interface/label';
 import Point    from './geometry/point';
 import Renderer from './render/renderer';
@@ -21,6 +22,7 @@ import round             from './math/round';
 
 const trize = {
   // ---- Classes ----
+  Circle,
   Label,
   Point,
   Renderer,

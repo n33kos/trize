@@ -10,20 +10,10 @@ export default class {
   constructor(geometry = null) {
     this.geometry = geometry;
     if (!geometry) {
-      // Fallback geometry
       this.geometry = [
-        new Point({
-          drawArc  : true,
-          position : new Vector2(0, -0.75),
-        }),
-        new Point({
-          drawArc  : true,
-          position : new Vector2(-0.75, 0.25),
-        }),
-        new Point({
-          drawArc  : true,
-          position : new Vector2(0.75, 0.25),
-        }),
+        new Point({ position : new Vector2(0, -0.75) }),
+        new Point({ position : new Vector2(-0.75, 0.25) }),
+        new Point({ position : new Vector2(0.75, 0.25) }),
       ];
     }
     this.sides = null;
@@ -109,14 +99,14 @@ export default class {
     const screenPos = clipSpaceToPixels(canvas, point.position);
 
     ctx.beginPath();
-    ctx.lineWidth = point.width;
-    ctx.strokeStyle = point.color;
+    ctx.lineWidth = point.arc.width;
+    ctx.strokeStyle = point.arc.color;
     ctx.arc(
       screenPos.x,
       screenPos.y,
-      point.arcRadius,
-      offset.start, // start at - offset
-      offset.end, // negative values because counter clockwise doesn't invert the values for this function -_-
+      point.arc.radius,
+      offset.start,
+      offset.end,
     );
     ctx.stroke();
   }
@@ -126,12 +116,27 @@ export default class {
     const nextScreenPos = clipSpaceToPixels(canvas, nextPoint.position);
 
     ctx.lineCap = 'round';
-    ctx.strokeStyle = point.color;
+    ctx.strokeStyle = point.line.color;
     ctx.beginPath();
-    ctx.lineWidth = point.width;
+    ctx.lineWidth = point.line.width;
     ctx.moveTo(screenPos.x, screenPos.y);
     ctx.lineTo(nextScreenPos.x, nextScreenPos.y);
     ctx.stroke();
+  }
+
+  drawVertex(canvas, ctx, point) {
+    const screenPos = clipSpaceToPixels(canvas, point.position);
+
+    ctx.fillStyle = point.vertex.color;
+    ctx.beginPath();
+    ctx.arc(
+      screenPos.x,
+      screenPos.y,
+      point.vertex.width,
+      0,
+      Math.PI * 2,
+    );
+    ctx.fill();
   }
 
   draw(canvas, ctx) {
@@ -147,9 +152,9 @@ export default class {
         nextPoint = this.geometry[i + 1];
       }
 
-      if (point.drawArc) this.drawArc(canvas, ctx, point, this.angles[i], this.arcBoundaries[i]);
-      this.drawLine(canvas, ctx, point, nextPoint);
+      if (point.arc.width > 0) this.drawArc(canvas, ctx, point, this.angles[i], this.arcBoundaries[i]);
+      if (point.line.width > 0) this.drawLine(canvas, ctx, point, nextPoint);
+      if (point.vertex.width > 0) this.drawVertex(canvas, ctx, point);
     }
   }
-
 }

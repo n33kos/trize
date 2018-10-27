@@ -1,6 +1,6 @@
 import Vector2 from '../math/vector2';
 
-// THIS IS SO NOT TESTED! MAKE SURE IT WORKS BEFORE MERGING
+// THIS IS SO NOT TESTED! MAKE SURE IT WORKS WHEN YOU USE IT!!
 export default (canvas, pixelSpacePosition) => {
   return new Vector2(
     ((pixelSpacePosition.x / canvas.width) * 2) - (canvas.width / 2),

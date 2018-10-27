@@ -30,11 +30,56 @@
        strokeStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
      });
     renderer.add(circle);
-    
+
      var triangle = new trize.Triangle([
-      new trize.Point({ position: new trize.Vector2(0,    0.5), color: 'red', width: 1, drawArc: true, }),
-      new trize.Point({ position: new trize.Vector2(-1, -0.5), color: 'green', width: 1, drawArc: true, }),
-      new trize.Point({ position: new trize.Vector2(0.75,  0.25), color: 'blue', width: 1, drawArc: true, }),
+      new trize.Point({
+        position: new trize.Vector2(0, 0.5),
+        arc : {
+          color: 'red',
+          width: 0,
+          radius : 30,
+        },
+        line : {
+          color: 'green',
+          width: 3,
+        },
+        vertex : {
+          color: 'blue',
+          width: 5,
+        }
+      }),
+      new trize.Point({
+        position: new trize.Vector2(-0.5, -0.5),
+        arc : {
+          color: 'orange',
+          width: 0,
+          radius : 30,
+        },
+        line : {
+          color: 'pink',
+          width: 3,
+        },
+        vertex : {
+          color: 'yellow',
+          width: 5,
+        }
+      }),
+      new trize.Point({
+        position: new trize.Vector2(0.75, 0.25),
+        arc : {
+          color: 'purple',
+          width: 0,
+          radius : 30,
+        },
+        line : {
+          color: 'cyan',
+          width: 3,
+        },
+        vertex : {
+          color: 'violet',
+          width: 5,
+        }
+      }),
     ]);
     renderer.add(triangle);
 

@@ -5,7 +5,7 @@
 
 // ---- Classes ----
 import Circle   from './geometry/circle';
-import Label    from './interface/label';
+import Label    from './text/label';
 import Point    from './geometry/point';
 import Renderer from './render/renderer';
 import Triangle from './geometry/triangle';
@@ -17,8 +17,10 @@ import degToRad          from './math/degToRad';
 import distance          from './math/distance';
 import lawOfCosines      from './math/lawOfCosines';
 import pixelsToClipSpace from './render/pixelsToClipSpace';
+import pointOnCircle     from './math/pointOnCircle';
 import radToDeg          from './math/radToDeg';
 import round             from './math/round';
+import sideCenterPoint   from './math/sideCenterPoint';
 
 const trize = {
   // ---- Classes ----
@@ -35,8 +37,10 @@ const trize = {
   distance,
   lawOfCosines,
   pixelsToClipSpace,
+  pointOnCircle,
   radToDeg,
   round,
+  sideCenterPoint,
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){

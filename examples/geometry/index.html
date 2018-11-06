@@ -23,11 +23,11 @@
      var isDragging = false;
      var renderer = new trize.Renderer('view');
      var circle = new trize.Circle({
-       fillStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
+       fillStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
        radius: 150,
        shouldFill: true,
        shouldStroke: true,
-       strokeStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
+       strokeStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
      });
     renderer.add(circle);
 
@@ -36,15 +36,27 @@
         position: new trize.Vector2(0, 0.5),
         arc : {
           color: 'red',
-          width: 0,
-          radius : 30,
+          label: new trize.Label({
+            offset: new trize.Vector2(0, 0), // This appears to be non-functional
+            text: 'arc',
+          }),
+          radius : 100,
+          width: 2,
         },
-        line : {
+        side : {
           color: 'green',
+          label: new trize.Label({
+            offset: new trize.Vector2(0, 0),
+            text: 'side',
+          }),
           width: 3,
         },
         vertex : {
           color: 'blue',
+          label: new trize.Label({
+            offset: new trize.Vector2(0, 0),
+            text: 'vertex',
+          }),
           width: 5,
         }
       }),
@@ -55,7 +67,7 @@
           width: 0,
           radius : 30,
         },
-        line : {
+        side : {
           color: 'pink',
           width: 3,
         },
@@ -71,7 +83,7 @@
           width: 0,
           radius : 30,
         },
-        line : {
+        side : {
           color: 'cyan',
           width: 3,
         },

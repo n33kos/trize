@@ -5,7 +5,8 @@ export default class {
   constructor({
     fillStyle = '#000000',
     font = '16px sans-serif',
-    position = new Vector2(0, 0),
+    offset = new Vector2(),
+    position = new Vector2(),
     strokeStyle = '#000000',
     text = 'Hello World',
     textAlign = 'center',
@@ -14,6 +15,7 @@ export default class {
   }) {
     this.fillStyle = fillStyle;
     this.font = font;
+    this.offset = offset;
     this.position = position;
     this.shouldFill = shouldFill;
     this.shouldStroke = shouldStroke;
@@ -24,6 +26,7 @@ export default class {
 
   draw(canvas, ctx) {
     const screenPos = clipSpaceToPixels(canvas, this.position);
+
     ctx.font = this.font;
     ctx.textAlign = this.textAlign;
 
@@ -40,8 +43,8 @@ export default class {
       ctx.strokeStyle = this.strokeStyle;
       ctx.strokeText(
         this.text,
-        screenPos.x,
-        screenPos.y,
+        screenPos.x + this.offset.x,
+        screenPos.y + this.offset.y,
       );
     }
   }

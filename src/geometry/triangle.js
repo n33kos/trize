@@ -2,8 +2,11 @@ import clipSpaceToPixels from '../render/clipSpaceToPixels';
 import degToRad          from '../math/degToRad';
 import distance          from '../math/distance';
 import lawOfCosines      from '../math/lawOfCosines';
+import pixelsToClipSpace from '../render/pixelsToClipSpace';
 import Point             from './point';
+import pointOnCircle     from '../math/pointOnCircle';
 import radToDeg          from '../math/radToDeg';
+import sideCenterPoint   from '../math/sideCenterPoint';
 import Vector2           from '../math/vector2';
 
 export default class {
@@ -109,6 +112,15 @@ export default class {
       offset.end,
     );
     ctx.stroke();
+
+    if (point.arc.label) {
+      point.arc.label.position = pointOnCircle(
+        offset.start + angle / 2,
+        point.position,
+        point.arc.radius / canvas.width,
+      );
+      point.arc.label.draw(canvas, ctx);
+    }
   }
 
   drawLine(canvas, ctx, point, nextPoint) {
@@ -116,12 +128,17 @@ export default class {
     const nextScreenPos = clipSpaceToPixels(canvas, nextPoint.position);
 
     ctx.lineCap = 'round';
-    ctx.strokeStyle = point.line.color;
+    ctx.strokeStyle = point.side.color;
     ctx.beginPath();
-    ctx.lineWidth = point.line.width;
+    ctx.lineWidth = point.side.width;
     ctx.moveTo(screenPos.x, screenPos.y);
     ctx.lineTo(nextScreenPos.x, nextScreenPos.y);
     ctx.stroke();
+
+    if (point.side.label) {
+      point.side.label.position = sideCenterPoint(point.position, nextPoint.position);
+      point.side.label.draw(canvas, ctx);
+    }
   }
 
   drawVertex(canvas, ctx, point) {
@@ -137,6 +154,11 @@ export default class {
       Math.PI * 2,
     );
     ctx.fill();
+
+    if (point.vertex.label) {
+      point.vertex.label.position = point.position.clone();
+      point.vertex.label.draw(canvas, ctx);
+    }
   }
 
   draw(canvas, ctx) {
@@ -153,7 +175,7 @@ export default class {
       }
 
       if (point.arc.width > 0) this.drawArc(canvas, ctx, point, this.angles[i], this.arcBoundaries[i]);
-      if (point.line.width > 0) this.drawLine(canvas, ctx, point, nextPoint);
+      if (point.side.width > 0) this.drawLine(canvas, ctx, point, nextPoint);
       if (point.vertex.width > 0) this.drawVertex(canvas, ctx, point);
     }
   }

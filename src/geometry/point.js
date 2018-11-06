@@ -7,7 +7,7 @@ export default class {
       width: 0,
       radius : 30,
     },
-    line = {
+    side = {
       color: 'black',
       width: 1,
     },
@@ -18,7 +18,7 @@ export default class {
     position = new Vector2(),
   }) {
     this.arc = arc;
-    this.line = line;
+    this.side = side;
     this.vertex = vertex;
     this.position = position;
   }

@@ -22,6 +22,7 @@ export default class {
     this.strokeStyle = strokeStyle;
     this.text = text;
     this.textAlign = textAlign;
+    // TODO: Add rotation
   }
 
   draw(canvas, ctx) {
@@ -34,8 +35,8 @@ export default class {
       ctx.fillStyle = this.fillStyle;
       ctx.fillText(
         this.text,
-        screenPos.x,
-        screenPos.y,
+        screenPos.x + this.offset.x,
+        screenPos.y + this.offset.y,
       );
     }
 

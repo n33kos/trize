@@ -114,10 +114,13 @@ export default class {
     ctx.stroke();
 
     if (point.arc.label) {
-      point.arc.label.position = pointOnCircle(
-        offset.start + angle / 2,
-        point.position,
-        point.arc.radius / canvas.width,
+      point.arc.label.position = pixelsToClipSpace(
+        canvas,
+        pointOnCircle(
+          offset.start + angle / 2,
+          screenPos,
+          point.arc.radius,
+        ),
       );
       point.arc.label.draw(canvas, ctx);
     }

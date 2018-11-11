@@ -27,6 +27,7 @@ export default class {
   }
 
   render() {
+    this.clear();
     this.scene.forEach(object => {
       object.draw(this.canvas, this.ctx);
     })

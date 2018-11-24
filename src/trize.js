@@ -6,6 +6,7 @@
 // ---- Classes ----
 import Circle   from './geometry/circle';
 import Label    from './text/label';
+import Line     from './geometry/line';
 import Point    from './geometry/point';
 import Renderer from './render/renderer';
 import Triangle from './geometry/triangle';
@@ -26,6 +27,7 @@ const trize = {
   // ---- Classes ----
   Circle,
   Label,
+  Line,
   Point,
   Renderer,
   Triangle,

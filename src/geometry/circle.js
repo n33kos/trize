@@ -50,6 +50,7 @@ export default class {
         radius,
         this.arcStart,
         this.arcEnd,
+        true, // Counterclockwise
       );
       ctx.fill();
     }
@@ -65,6 +66,7 @@ export default class {
         radius,
         this.arcStart,
         this.arcEnd,
+        true, // Counterclockwise
       );
       ctx.stroke();
     }

@@ -1,5 +1,6 @@
-import Vector2           from '../math/vector2';
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
+import distance          from '../math/distance';
+import Vector2           from '../math/vector2';
 
 export default class {
   constructor({
@@ -7,7 +8,8 @@ export default class {
     arcStart = 0,
     fillStyle = '#000000',
     position = new Vector2(0, 0),
-    radius = 100,
+    radius = null,
+    clipRadius = null,
     shouldFill = true,
     shouldStroke = false,
     strokeStyle = '#000000',
@@ -15,6 +17,7 @@ export default class {
   }) {
     this.arcEnd = arcEnd;
     this.arcStart = arcStart;
+    this.clipRadius = clipRadius;
     this.fillStyle = fillStyle;
     this.position = position;
     this.radius = radius;
@@ -24,8 +27,18 @@ export default class {
     this.strokeWidth = strokeWidth;
   }
 
+  getPixelRadiusFromClipRadius(canvas) {
+    return distance(
+      clipSpaceToPixels(canvas, new Vector2(0, 0)),
+      clipSpaceToPixels(canvas, new Vector2(this.clipRadius, 0)),
+    );
+  }
+
   draw(canvas, ctx) {
     const screenPos = clipSpaceToPixels(canvas, this.position);
+
+    let radius = this.radius;
+    if (!this.radius) radius = this.getPixelRadiusFromClipRadius(canvas);
 
     if (this.shouldFill) {
       ctx.fillStyle = this.fillStyle;
@@ -34,7 +47,7 @@ export default class {
       ctx.arc(
         screenPos.x,
         screenPos.y,
-        this.radius,
+        radius,
         this.arcStart,
         this.arcEnd,
       );
@@ -49,7 +62,7 @@ export default class {
       ctx.arc(
         screenPos.x,
         screenPos.y,
-        this.radius,
+        radius,
         this.arcStart,
         this.arcEnd,
       );

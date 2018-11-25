@@ -11,6 +11,7 @@ export default class {
     shouldFill = true,
     shouldStroke = false,
     strokeStyle = '#000000',
+    strokeWidth = 1,
   }) {
     this.arcEnd = arcEnd;
     this.arcStart = arcStart;
@@ -20,6 +21,7 @@ export default class {
     this.shouldFill = shouldFill;
     this.shouldStroke = shouldStroke;
     this.strokeStyle = strokeStyle;
+    this.strokeWidth = strokeWidth;
   }
 
   draw(canvas, ctx) {
@@ -41,6 +43,7 @@ export default class {
 
     if (this.shouldStroke) {
       ctx.strokeStyle = this.strokeStyle;
+      ctx.lineWidth = this.strokeWidth;
 
       ctx.beginPath();
       ctx.arc(

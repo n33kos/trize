@@ -12,6 +12,7 @@ import Renderer from './render/renderer';
 import Scene    from './render/scene';
 import Triangle from './geometry/triangle';
 import Vector2  from './math/vector2';
+import Vertex   from './geometry/vertex';
 
 // ---- Functions ----
 import clipSpaceToPixels from './render/clipSpaceToPixels';
@@ -34,6 +35,7 @@ const trize = {
   Scene,
   Triangle,
   Vector2,
+  Vertex,
 
   // ---- Functions ----
   clipSpaceToPixels,

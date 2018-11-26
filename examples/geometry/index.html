@@ -23,6 +23,13 @@
     var scene = new trize.Scene();
     var renderer = new trize.Renderer('view', scene);
 
+    var vertex = new trize.Vertex({
+      color    : 'blue',
+      position : new trize.Vector2(0, 0.75),
+      width    : 5,
+    });
+    scene.add(vertex);
+
     var xLine = new trize.Line({
       color : 'gray',
       end   : new trize.Vector2(1, 0),

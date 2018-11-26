@@ -9,6 +9,7 @@ import Label    from './text/label';
 import Line     from './geometry/line';
 import Point    from './geometry/point';
 import Renderer from './render/renderer';
+import Scene    from './render/scene';
 import Triangle from './geometry/triangle';
 import Vector2  from './math/vector2';
 
@@ -30,6 +31,7 @@ const trize = {
   Line,
   Point,
   Renderer,
+  Scene,
   Triangle,
   Vector2,
 

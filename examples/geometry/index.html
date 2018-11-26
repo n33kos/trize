@@ -20,34 +20,35 @@
 
   <script>
     // --------INIT-----
-     var renderer = new trize.Renderer('view');
+    var scene = new trize.Scene();
+    var renderer = new trize.Renderer('view', scene);
 
-     var xLine = new trize.Line({
-       color : 'gray',
-       end   : new trize.Vector2(1, 0),
-       start : new trize.Vector2(-1, 0),
-       width : 1,
-     });
-     renderer.add(xLine);
+    var xLine = new trize.Line({
+      color : 'gray',
+      end   : new trize.Vector2(1, 0),
+      start : new trize.Vector2(-1, 0),
+      width : 1,
+    });
+    scene.add(xLine);
 
-     var yLine = new trize.Line({
-       color : 'gray',
-       end   : new trize.Vector2(0, -1),
-       start : new trize.Vector2(0, 1),
-       width : 1,
-     });
-     renderer.add(yLine);
+    var yLine = new trize.Line({
+      color : 'gray',
+      end   : new trize.Vector2(0, -1),
+      start : new trize.Vector2(0, 1),
+      width : 1,
+    });
+    scene.add(yLine);
 
-     var circle = new trize.Circle({
-       fillStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
-       radius: 150,
-       shouldFill: true,
-       shouldStroke: true,
-       strokeStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
-     });
-    renderer.add(circle);
+    var circle = new trize.Circle({
+      fillStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
+      radius: 150,
+      shouldFill: true,
+      shouldStroke: true,
+      strokeStyle: 'hsl(' + 360 * Math.random() + ', 100%, 50%)',
+    });
+    scene.add(circle);
 
-     var triangle = new trize.Triangle([
+    var triangle = new trize.Triangle([
       new trize.Point({
         position: new trize.Vector2(0, 0.5),
         arc : {
@@ -110,7 +111,7 @@
         }
       }),
     ]);
-    renderer.add(triangle);
+    scene.add(triangle);
 
     // -----FUNCS----
     renderer.render();

@@ -1,5 +1,5 @@
 export default class {
-  constructor(element) {
+  constructor(element, scene) {
     const canvas = document.getElementById(element);
     const ctx = canvas.getContext('2d');
     const pixelDensity = window.devicePixelRatio;
@@ -9,8 +9,8 @@ export default class {
     this.ctx = ctx;
     this.cx = ctx.canvas.width/2;
     this.cy = ctx.canvas.height/2;
-    this.scene = [];
     this.pixelDensity = pixelDensity;
+    this.scene = scene;
   }
 
   resizeCanvas() {
@@ -24,13 +24,9 @@ export default class {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  add(object) {
-    this.scene.push(object);
-  }
-
   render() {
     this.clear();
-    this.scene.forEach(object => {
+    this.scene.objects.forEach(object => {
       object.draw(this.canvas, this.ctx);
     })
   }

@@ -1,3 +1,13 @@
+/**
+ * A class to draw a Line
+ * @class Line
+ * @param {Object} config - configuration object
+ * @param {string} config.color - Color of the line
+ * @param {Vector2} config.end - End position of the line
+ * @param {Vector2} config.start - Start position of the line
+ * @param {number} config.width - Width of the line
+ */
+
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
 import Vector2           from '../math/vector2';
 

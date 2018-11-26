@@ -1,3 +1,9 @@
+/**
+ * A class to draw a triangle
+ * @class Triangle
+ * @param {Array} geometry - configuration object containing all of the triangle's point information
+ */
+
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
 import degToRad          from '../math/degToRad';
 import distance          from '../math/distance';

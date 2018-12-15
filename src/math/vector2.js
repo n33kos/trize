@@ -1,3 +1,10 @@
+/**
+ * A class to represent a vertex in 2D space
+ * @class Vector2
+ * @param {number} x - position in the x axis
+ * @param {number} y - position in the y axis
+ */
+
 export default class {
   constructor(x = 0, y = 0){
     this.x = x;

@@ -1,3 +1,10 @@
+/**
+ * A class to contain all scene objects
+ * @class Scene
+ * @param {string} element - ID of the canvas element
+ * @param {Scene} scene - Scene object containing all scene
+ */
+
 const uuidv4 = require('uuid/v4');
 
 export default class {

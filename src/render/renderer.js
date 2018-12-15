@@ -1,3 +1,10 @@
+/**
+ * A class to construct a renderer for a canvas element
+ * @class Renderer
+ * @param {string} element - ID of the canvas element
+ * @param {Scene} scene - Scene object containing all scene objects
+ */
+
 export default class {
   constructor(element, scene) {
     const canvas = document.getElementById(element);

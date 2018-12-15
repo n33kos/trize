@@ -1,3 +1,9 @@
+/**
+ * A function to return a number rounded to a desired count of digits
+ * @function round
+ * @param {number} rounded
+ */
+
 export default (num, scale) => {
   if(!("" + num).indexOf("e") >= 0) {
     return +(Math.round(num + "e+" + scale)  + "e-" + scale);

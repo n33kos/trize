@@ -1,7 +1,26 @@
 /**
  * A class to draw a triangle
  * @class Triangle
- * @param {Array} geometry - configuration object containing all of the triangle's point information
+ * @param {Array} [Point, Point, Point] - Array of Point objects which make up the triangle.
+ *
+ * @param {Vector2} geometry[0].position - Position of the triangle's point
+ *
+ * @param {Object} geometry[0].arc - Configuration object for an arc on this point of the triangle
+ * @param {string} geometry[0].arc.color - Color of the arc
+ * @param {Label} geometry[0].arc.label - Label for the arc
+ * @param {number} geometry[0].arc.radius - Radius or arc in pixels from point
+ * @param {number} geometry[0].arc.width - Width of the arc
+ *
+ * @param {Object} geometry[0].side - Configuration object for the side starting with this point of the triangle
+ * @param {Label} geometry[0].side.label - Label for the side
+ * @param {string} geometry[0].side.color - Color of the side
+ * @param {number} geometry[0].side.width - Width of the side
+ *
+ * @param {Object} geometry[0].vertex - Configuration object for the vertex of this point
+ * @param {Label} geometry[0].vertex.label - Label for the vertex
+ * @param {string} geometry[0].vertex.color - Color of the vertex
+ * @param {number} geometry[0].vertex.width - Width of the vertex
+ *
  */
 
 import clipSpaceToPixels from '../render/clipSpaceToPixels';

@@ -1,3 +1,19 @@
+/**
+ * A class to represent a label in the scene
+ * @class Label
+ *
+ * @param {string} fillStyle - Fill style for the label text
+ * @param {string} font - Font for the label
+ * @param {Vector2} offset - Offset from the label's position (in pixels)
+ * @param {Vector2} position - Position of the label
+ * @param {number} rotation - Rotation of the label
+ * @param {string} strokeStyle - Stroke style for the label text
+ * @param {string} text - Content of the label to display
+ * @param {string} textAlign - Text alignment for the label
+ * @param {boolean} shouldStroke - Should the label draw a stroke
+ * @param {boolean} shouldFill - Should the label draw a fill
+ */
+
 import Vector2           from '../math/vector2';
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
 

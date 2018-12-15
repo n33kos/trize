@@ -81,11 +81,25 @@ A class to contain defaults for a point on a triangle
 **Kind**: global class  
 <a name="new_Triangle_new"></a>
 
-### new Triangle(geometry)
+### new Triangle([Point, Point, Point])
 A class to draw a triangle
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| geometry | <code>Array</code> | configuration object containing all of the triangle's point information |
+| [Point, Point, Point] | <code>Array</code> | Array of Point objects which make up the triangle. |
+| geometry[0].position | <code>Vector2</code> | Position of the triangle's point |
+| geometry[0].arc | <code>Object</code> | Configuration object for an arc on this point of the triangle |
+| geometry[0].arc.color | <code>string</code> | Color of the arc |
+| geometry[0].arc.label | <code>Label</code> | Label for the arc |
+| geometry[0].arc.radius | <code>number</code> | Radius or arc in pixels from point |
+| geometry[0].arc.width | <code>number</code> | Width of the arc |
+| geometry[0].side | <code>Object</code> | Configuration object for the side starting with this point of the triangle |
+| geometry[0].side.label | <code>Label</code> | Label for the side |
+| geometry[0].side.color | <code>string</code> | Color of the side |
+| geometry[0].side.width | <code>number</code> | Width of the side |
+| geometry[0].vertex | <code>Object</code> | Configuration object for the vertex of this point |
+| geometry[0].vertex.label | <code>Label</code> | Label for the vertex |
+| geometry[0].vertex.color | <code>string</code> | Color of the vertex |
+| geometry[0].vertex.width | <code>number</code> | Width of the vertex |
 

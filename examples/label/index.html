@@ -26,7 +26,8 @@
     for (var i = 0; i < 50; i++) {
       var label = new trize.Label({
         fillStyle: 'hsl('+ 360*Math.random() +', 100%, 50%)',
-        font: (Math.random() * 50 + 5) + 'px sans-serif',
+        font: 'sans-serif',
+        fontSize: (Math.random() * 50 + 5),
         position: new trize.Vector2(
           Math.random() > 0.5 ? -Math.random() : Math.random(),
           Math.random() > 0.5 ? -Math.random() : Math.random(),

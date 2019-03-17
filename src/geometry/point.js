@@ -8,7 +8,8 @@
  * @param {Vector2} config.position - Position of the point
  */
 
-import Vector2 from '../math/vector2';
+import getPixelDensity from '../render/getPixelDensity';
+import Vector2         from '../math/vector2';
 
 export default class {
   constructor({
@@ -31,5 +32,9 @@ export default class {
     this.side = side;
     this.vertex = vertex;
     this.position = position;
+
+    this.arc.width = this.arc.width * getPixelDensity();
+    this.side.width = this.side.width * getPixelDensity();
+    this.vertex.width = this.vertex.width * getPixelDensity();
   }
 }

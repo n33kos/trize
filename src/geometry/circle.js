@@ -16,6 +16,7 @@
 
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
 import distance          from '../math/distance';
+import getPixelDensity   from '../render/getPixelDensity';
 import Vector2           from '../math/vector2';
 
 export default class {
@@ -36,11 +37,11 @@ export default class {
     this.clipRadius = clipRadius;
     this.fillStyle = fillStyle;
     this.position = position;
-    this.radius = radius;
+    this.radius = radius * getPixelDensity();
     this.shouldFill = shouldFill;
     this.shouldStroke = shouldStroke;
     this.strokeStyle = strokeStyle;
-    this.strokeWidth = strokeWidth;
+    this.strokeWidth = strokeWidth * getPixelDensity();
   }
 
   getPixelRadiusFromClipRadius(canvas) {
@@ -73,7 +74,7 @@ export default class {
 
     if (this.shouldStroke) {
       ctx.strokeStyle = this.strokeStyle;
-      ctx.lineWidth = this.strokeWidth;
+      ctx.lineWidth = this.strokeWidth * this.pixelDensity;
 
       ctx.beginPath();
       ctx.arc(

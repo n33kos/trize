@@ -14,24 +14,29 @@
  * @param {boolean} shouldFill - Should the label draw a fill
  */
 
-import Vector2           from '../math/vector2';
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
+import getPixelDensity   from '../render/getPixelDensity';
+import Vector2           from '../math/vector2';
 
 export default class {
   constructor({
     fillStyle = '#000000',
-    font = '16px sans-serif',
+    font = 'sans-serif',
+    fontSize = '16',
+    fontSizeType = 'px',
     offset = new Vector2(),
     position = new Vector2(),
     rotation = 0,
+    shouldFill = true,
+    shouldStroke = false,
     strokeStyle = '#000000',
     text = 'Hello World',
     textAlign = 'center',
-    shouldStroke = false,
-    shouldFill = true,
   }) {
     this.fillStyle = fillStyle;
     this.font = font;
+    this.fontSize = fontSize * getPixelDensity();
+    this.fontSizeType = fontSizeType;
     this.offset = offset;
     this.position = position;
     this.rotation = rotation;
@@ -49,7 +54,7 @@ export default class {
       screenPos.y + this.offset.y,
     );
 
-    ctx.font = this.font;
+    ctx.font = `${this.fontSize}${this.fontSizeType} ${this.font}`;
     ctx.textAlign = this.textAlign;
 
     // Move canvas to position and rotate

@@ -9,6 +9,7 @@
  */
 
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
+import getPixelDensity   from '../render/getPixelDensity';
 import Vector2           from '../math/vector2';
 
 export default class {
@@ -21,7 +22,7 @@ export default class {
     this.color = color;
     this.end = end;
     this.start = start;
-    this.width = width;
+    this.width = width * getPixelDensity();
   }
 
   draw(canvas, ctx) {

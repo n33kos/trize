@@ -26,6 +26,7 @@
 import clipSpaceToPixels from '../render/clipSpaceToPixels';
 import degToRad          from '../math/degToRad';
 import distance          from '../math/distance';
+import getPixelDensity   from '../render/getPixelDensity';
 import lawOfCosines      from '../math/lawOfCosines';
 import pixelsToClipSpace from '../render/pixelsToClipSpace';
 import Point             from './point';
@@ -132,7 +133,7 @@ export default class {
     ctx.arc(
       screenPos.x,
       screenPos.y,
-      point.arc.radius,
+      point.arc.radius * getPixelDensity(),
       offset.start,
       offset.end,
     );

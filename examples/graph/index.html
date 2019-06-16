@@ -24,11 +24,10 @@
     var renderer = new trize.Renderer('view', scene);
 
     var graph = new trize.Graph({
-      // color           : 'grey',
-      lineCount       : new trize.Vector2(10, 10),
-      // originColor     : 'red',
-      // originLineWidth : 2,
-      // width           : 1,
+      canvas          : renderer.canvas,
+      originLineWidth : 2,
+      size            : 64,
+      width           : 1,
     });
     scene.add(graph);
 

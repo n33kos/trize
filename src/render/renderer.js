@@ -25,6 +25,10 @@ export default class {
   	this.canvas.height = this.canvas.offsetHeight * this.pixelDensity;
   	this.cx = this.ctx.canvas.width / 2;
   	this.cy = this.ctx.canvas.height / 2;
+
+    this.scene.objects.forEach(object => {
+      if (typeof object.resize === 'function') object.resize(this.canvas, this.ctx);
+    })
   }
 
   clear() {

@@ -5,6 +5,7 @@
 
 // ---- Classes ----
 import Circle   from './geometry/circle';
+import Graph    from './graph/graph';
 import Label    from './text/label';
 import Line     from './geometry/line';
 import Point    from './geometry/point';
@@ -28,6 +29,7 @@ import sideCenterPoint   from './math/sideCenterPoint';
 const trize = {
   // ---- Classes ----
   Circle,
+  Graph,
   Label,
   Line,
   Point,

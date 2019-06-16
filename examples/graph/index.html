@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Graph Example</title>
+
+    <meta name="description" content="Examples for trize">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../../dist/trize.min.js"></script>
+  </head>
+
+  <body>
+    <canvas id="view"></canvas>
+    <h1>Graph Example</h1>
+  </body>
+
+  <script>
+    // --------INIT-----
+    var scene = new trize.Scene();
+    var renderer = new trize.Renderer('view', scene);
+
+    var graph = new trize.Graph({
+      // color           : 'grey',
+      lineCount       : new trize.Vector2(10, 10),
+      // originColor     : 'red',
+      // originLineWidth : 2,
+      // width           : 1,
+    });
+    scene.add(graph);
+
+    // -----FUNCS----
+    renderer.render();
+
+    // -----EVENTS------
+    window.addEventListener('resize', () => {
+      renderer.clear();
+      renderer.resizeCanvas();
+      renderer.render();
+    });
+  </script>
+</html>

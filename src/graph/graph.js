@@ -29,7 +29,6 @@ export default class {
     this.size = size;
     this.width = width;
     this.canvas = canvas;
-    this.lines = [];
 
     this.initLines();
   }
@@ -51,7 +50,7 @@ export default class {
       }),
     ];
 
-    const clipSpaceSize = new Vector2(
+    this.clipSpaceSize = new Vector2(
       (this.size / this.canvas.width) * getPixelDensity(),
       (this.size / this.canvas.height) * getPixelDensity(),
     );
@@ -62,14 +61,14 @@ export default class {
       this.lines.push(
         new trize.Line({
           color : this.color,
-          end   : new Vector2(1, i * clipSpaceSize.y),
-          start : new Vector2(-1, i * clipSpaceSize.y),
+          end   : new Vector2(1, i * this.clipSpaceSize.y),
+          start : new Vector2(-1, i * this.clipSpaceSize.y),
           width : this.width,
         }),
         new trize.Line({
           color : this.color,
-          end   : new Vector2(1, -i * clipSpaceSize.y),
-          start : new Vector2(-1, -i * clipSpaceSize.y),
+          end   : new Vector2(1, -i * this.clipSpaceSize.y),
+          start : new Vector2(-1, -i * this.clipSpaceSize.y),
           width : this.width,
         }),
       );
@@ -81,14 +80,14 @@ export default class {
       this.lines.push(
         new trize.Line({
           color : this.color,
-          end   : new Vector2(i * clipSpaceSize.x, 1),
-          start : new Vector2(i * clipSpaceSize.x, -1),
+          end   : new Vector2(i * this.clipSpaceSize.x, 1),
+          start : new Vector2(i * this.clipSpaceSize.x, -1),
           width : this.width,
         }),
         new trize.Line({
           color : this.color,
-          end   : new Vector2(-i * clipSpaceSize.x, 1),
-          start : new Vector2(-i * clipSpaceSize.x, -1),
+          end   : new Vector2(-i * this.clipSpaceSize.x, 1),
+          start : new Vector2(-i * this.clipSpaceSize.x, -1),
           width : this.width,
         }),
       );

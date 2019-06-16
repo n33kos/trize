@@ -26,10 +26,23 @@
     var graph = new trize.Graph({
       canvas          : renderer.canvas,
       originLineWidth : 2,
-      size            : 64,
+      size            : window.innerWidth / 8,
       width           : 1,
     });
     scene.add(graph);
+
+    var func = new trize.Function({
+      canvas              : renderer.canvas,
+      condition           : (i) => i < 16,
+      func                : (n) => new trize.Vector2(n + 1, Math.sin(n * (Math.PI / 2))),
+      incrementExpression : (i) => i + 1,
+      graph,
+      initialValue        : -16,
+      pointColor          : 'black',
+      pointWidth          : 5,
+      lineColor           : 'black',
+    });
+    scene.add(func);
 
     // -----FUNCS----
     renderer.render();

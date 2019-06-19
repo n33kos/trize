@@ -1,6 +1,6 @@
 /**
  * A class to draw a graph
- * @class Line
+ * @class Graph
  * @param {Object} config - configuration object
  * @param {int} config.size - Size of each grid square in pixels
  * @param {string} config.color - Color of the lines

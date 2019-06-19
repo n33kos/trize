@@ -34,13 +34,14 @@
     var func = new trize.Function({
       canvas              : renderer.canvas,
       condition           : (i) => i < 16,
-      func                : (n) => new trize.Vector2(n + 1, Math.sin(n * (Math.PI / 2))),
-      incrementExpression : (i) => i + 1,
+      func                : (n) => new trize.Vector2(n - 1, Math.sin(n * (Math.PI / 2))),
+      incrementExpression : (i) => i + 2,
       graph,
-      initialValue        : -16,
+      initialValue        : -15,
       pointColor          : 'black',
       pointWidth          : 5,
       lineColor           : 'black',
+      lineWidth           : 2,
     });
     scene.add(func);
 

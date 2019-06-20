@@ -26,7 +26,6 @@ export default class {
     this.canvas = canvas;
 
     this.points = this.transformPoints(points);
-    this.controlPoints = this.generateControlPoints();
   }
 
   transformPoints(points) {
@@ -34,88 +33,29 @@ export default class {
 
     points.forEach(point => {
       const position = clipSpaceToPixels(this.canvas, point);
-      transformedPoints.push(position.x, position.y);
+      transformedPoints.push(new Vector2(position.x, position.y));
     });
 
     return transformedPoints;
   }
 
-  controlPointsFunc(x1, y1, x2, y2, x3, y3) {
-    const v = this.va(this.points, 0, 2);
-    const d01 = this.distanceArray(this.points, 0, 1);
-    const d12 = this.distanceArray(this.points, 1, 2);
-    const d012 = d01 + d12;
-    return [
-      x2 - v[0] * this.tension * d01 / d012,
-      y2 - v[1] * this.tension * d01 / d012,
-      x2 + v[0] * this.tension * d12 / d012,
-      y2 + v[1] * this.tension * d12 / d012
-    ];
-  }
-
-  generateControlPoints() {
-    let controlPoints = [];
-
-    for (let i = 0; i < this.points.length - 2; i += 1) {
-      controlPoints = controlPoints.concat(this.controlPointsFunc(
-        this.points[2*i],
-        this.points[2*i+1],
-        this.points[2*i+2],
-        this.points[2*i+3],
-        this.points[2*i+4],
-        this.points[2*i+5]
-      ));
-    }
-
-    return controlPoints;
-  }
-
-  distanceArray(arr, i, j) {
-    return Math.sqrt(Math.pow(arr[2*i]-arr[2*j], 2) + Math.pow(arr[2*i+1]-arr[2*j+1], 2));
-  }
-
-  va(arr, i, j){
-    return [arr[2*j]-arr[2*i], arr[2*j+1]-arr[2*i+1]]
-  }
-
   resize(canvas, ctx, points) {
     this.points = this.transformPoints(points);
-    this.controlPoints = this.generateControlPoints();
   }
 
   draw(canvas, ctx) {
     ctx.beginPath();
+    ctx.moveTo((this.points[0].x), this.points[0].y);
 
-    // probably move this clipspace out
-    ctx.moveTo(this.points[0], this.points[1]);
-
-    // For first span use quadratic curve
-    ctx.quadraticCurveTo(
-      this.controlPoints[0],
-      this.controlPoints[1],
-      this.points[2],
-      this.points[3]
-    );
-
-    // For all middle points use with bezier
-    for(let i = 2; i < this.points.length - 1; i++) {
-      ctx.bezierCurveTo(
-        this.controlPoints[(2*(i-1)-1)*2],
-        this.controlPoints[(2*(i-1)-1)*2+1],
-        this.controlPoints[(2*(i-1))*2],
-        this.controlPoints[(2*(i-1))*2+1],
-        this.points[i*2],
-        this.points[i*2+1]
-      );
+    for(let i = 0; i < this.points.length-1; i ++)
+    {
+      const x_mid = (this.points[i].x + this.points[i+1].x) / 2;
+      const y_mid = (this.points[i].y + this.points[i+1].y) / 2;
+      const cp_x1 = (x_mid + this.points[i].x) / 2;
+      const cp_x2 = (x_mid + this.points[i+1].x) / 2;
+      ctx.quadraticCurveTo(cp_x1,this.points[i].y ,x_mid, y_mid);
+      ctx.quadraticCurveTo(cp_x2,this.points[i+1].y ,this.points[i+1].x,this.points[i+1].y);
     }
-
-    // For last span use a quadratic curve
-    ctx.quadraticCurveTo(
-      this.controlPoints[(2*((this.points.length - 1)-1)-1)*2],
-      this.controlPoints[(2*((this.points.length - 1)-1)-1)*2+1],
-      this.points[(this.points.length - 1)*2],
-      this.points[(this.points.length - 1)*2+1]
-    );
 
     ctx.lineWidth = this.lineWidth;
     ctx.strokeStyle = this.color;

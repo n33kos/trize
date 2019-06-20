@@ -87,11 +87,15 @@ export default class {
     ctx.beginPath();
 
     // probably move this clipspace out
-    const initialPosition = clipSpaceToPixels(canvas, this.points[0]);
-    ctx.moveTo(initialPosition.x, initialPosition.y);
+    ctx.moveTo(this.points[0], this.points[1]);
 
     // For first span use quadratic curve
-    ctx.quadraticCurveTo(this.controlPoints[0], this.controlPoints[1], this.points[2], this.points[3]);
+    ctx.quadraticCurveTo(
+      this.controlPoints[0],
+      this.controlPoints[1],
+      this.points[2],
+      this.points[3]
+    );
 
     // For all middle points use with bezier
     for(let i = 2; i < this.points.length - 1; i++) {

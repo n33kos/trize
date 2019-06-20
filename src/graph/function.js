@@ -104,6 +104,7 @@ export default class {
 
   resize(canvas, ctx) {
     this.plotPoints();
+    this.curve.resize(canvas, ctx, this.points);
   }
 
   draw(canvas, ctx) {

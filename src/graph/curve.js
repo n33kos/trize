@@ -26,7 +26,7 @@ export default class {
     this.canvas = canvas;
 
     this.points = this.transformPoints(points);
-    this.controlPoints = this.generateControlPoints()
+    this.controlPoints = this.generateControlPoints();
   }
 
   transformPoints(points) {
@@ -40,11 +40,24 @@ export default class {
     return transformedPoints;
   }
 
+  controlPointsFunc(x1, y1, x2, y2, x3, y3) {
+    const v = this.va(this.points, 0, 2);
+    const d01 = this.distanceArray(this.points, 0, 1);
+    const d12 = this.distanceArray(this.points, 1, 2);
+    const d012 = d01 + d12;
+    return [
+      x2 - v[0] * this.tension * d01 / d012,
+      y2 - v[1] * this.tension * d01 / d012,
+      x2 + v[0] * this.tension * d12 / d012,
+      y2 + v[1] * this.tension * d12 / d012
+    ];
+  }
+
   generateControlPoints() {
     let controlPoints = [];
 
     for (let i = 0; i < this.points.length - 2; i += 1) {
-      controlPoints = controlPoints.concat(this.controlPoints(
+      controlPoints = controlPoints.concat(this.controlPointsFunc(
         this.points[2*i],
         this.points[2*i+1],
         this.points[2*i+2],
@@ -65,17 +78,10 @@ export default class {
     return [arr[2*j]-arr[2*i], arr[2*j+1]-arr[2*i+1]]
   }
 
-  controlPoints(x1, y1, x2, y2, x3, y3) {
-    const v = this.va(this.points, 0, 2);
-    const d01 = this.distanceArray(this.points, 0, 1);
-    const d12 = this.distanceArray(this.points, 1, 2);
-    const d012 = d01 + d12;
-    return [
-      x2 - v[0] * this.tension * d01 / d012,
-      y2 - v[1] * this.tension * d01 / d012,
-      x2 + v[0] * this.tension * d12 / d012,
-      y2 + v[1] * this.tension * d12 / d012
-    ];
+  resize(canvas, ctx, points) {
+    console.log(points);
+    this.points = this.transformPoints(points);
+    this.controlPoints = this.generateControlPoints();
   }
 
   draw(canvas, ctx) {

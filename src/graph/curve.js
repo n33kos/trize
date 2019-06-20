@@ -79,7 +79,6 @@ export default class {
   }
 
   resize(canvas, ctx, points) {
-    console.log(points);
     this.points = this.transformPoints(points);
     this.controlPoints = this.generateControlPoints();
   }
